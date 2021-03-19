@@ -7,7 +7,7 @@ import pandas as pd
 
 def init_browser():
     executable_path = {"executable_path": "/Users/thomasadamson/Downloads/chromedriver"}
-    return Browser("chrome", **executable_path, headless=False)
+    return Browser("chrome", **executable_path, headless=True)
 
 def scrape_info():
     #######NASA NEWS#######
@@ -124,7 +124,7 @@ def scrape_info():
     'nasa_news_tag': tag,
     'featured_mars_url': featured_image_url,
     'mars_facts_table': mars_facts_html,
-    'mars_hempsphere_pics': hemisphere_info
+    'mars_hemisphere_pics': hemisphere_info
     }
 
     return mars_dataset

@@ -21,7 +21,51 @@
                     </div>
                 </div>
     {% if mars %}
-    <p> {{mars.nasa_news_tag}}</p>
+    <div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-12">
+					<img alt="JPL Mars Image" src={{mars.featured_mars_url}} width=100% />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<h3 class="text-center">
+						BREAKING NEWS
+					</h3>
+                    <h3>{{ mars.nasa_news_title }}</h3>
+					<p>
+						{{ mars.nasa_news_tag }}
+					</p>
+				</div>
+				<div class="col-md-6">
+                    <table>{{mars.mars_facts_table | safe}}</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<h3>
+				{{ mars.mars_hemisphere_pics[0]['title'] }}
+			</h3><img alt="Hemisphere 1" src={{ mars.mars_hemisphere_pics[0]['img_url'] }} width=100%>
+		</div>
+		<div class="col-md-3">
+			<h3>
+				{{ mars.mars_hemisphere_pics[1]['title'] }}
+			</h3><img alt="Hemisphere 2" src={{ mars.mars_hemisphere_pics[1]['img_url'] }} width=100%>
+		</div>
+		<div class="col-md-3">
+			<h3>
+				{{ mars.mars_hemisphere_pics[2]['title'] }}
+			</h3><img alt="Hemisphere 3" src={{ mars.mars_hemisphere_pics[2]['img_url'] }} width=100%>
+		</div>
+		<div class="col-md-3">
+			<h3>
+				{{ mars.mars_hemisphere_pics[3]['title'] }}
+			</h3><img alt="Hemisphere 4" src={{ mars.mars_hemisphere_pics[3]['img_url'] }} width=100%>
+		</div>
+	</div>
     {% endif %}
 </body>
 
