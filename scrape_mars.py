@@ -7,7 +7,7 @@ import pandas as pd
 
 def init_browser():
     executable_path = {"executable_path": "/Users/thomasadamson/Downloads/chromedriver"}
-    return Browser("chrome", **executable_path, headless=True)
+    return Browser("chrome", **executable_path, headless=False)
 
 def scrape_info():
     #######NASA NEWS#######
@@ -82,41 +82,49 @@ def scrape_info():
     #append each hemisphere's link title into a list so we can click them in splinter
     pages = []
     for title in hemispheres:
-    pages.append(title.find('h3').text)
+        pages.append(title.find('h3').text)
 
     #Loop through each page and get image url
     img_urls = []
 
     for image_page in pages:
 
-    #Declare the starting url for each loop iteration
-    browser = init_browser()
+        #Declare the starting url for each loop iteration
+        browser = init_browser()
 
-    url = "https://astrogeology.usgs.gov"
-    browser.visit(url + "/search/results?q=hemisphere+enhanced&k1=target&v1=Mars")
+        url = "https://astrogeology.usgs.gov"
+        browser.visit(url + "/search/results?q=hemisphere+enhanced&k1=target&v1=Mars")
 
-    #Click on the appropriate link
-    browser.links.find_by_partial_text(image_page).click()
+        #Click on the appropriate link
+        browser.links.find_by_partial_text(image_page).click()
 
-    #Set a working html paser for the new page
-    html = browser.html
-    soup = bs(html, "html.parser")
+        #Set a working html paser for the new page
+        html = browser.html
+        soup = bs(html, "html.parser")
 
-    #Extract the imag path
-    img_path = soup.find('img', class_='wide-image')['src']
+        #Extract the imag path
+        img_path = soup.find('img', class_='wide-image')['src']
 
-    full_url = url + img_path
+        browser.quit()
 
-    img_urls.append(full_url)
+        full_url = url + img_path
 
-    browser.quit()
+        img_urls.append(full_url)
+
+    #Make a list of dictioinaries using the pages and urls lists
+    hemisphere_info = []
+
+    for x in range(len(pages)):
+        hemi_dict = {'title': pages[x], 'img_url': img_urls[x]}
+    
+        hemisphere_info.append(hemi_dict)
 
     mars_dataset = {
     'nasa_news_title': news_title,
     'nasa_news_tag': tag,
     'featured_mars_url': featured_image_url,
     'mars_facts_table': mars_facts_html,
-    'mars_hempsphere_pics': img_urls
+    'mars_hempsphere_pics': hemisphere_info
     }
 
     return mars_dataset
