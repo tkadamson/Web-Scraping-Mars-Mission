@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
-<body>
+<body style='background-color: rgb(228, 227, 227);'>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -16,7 +16,7 @@
                     <div class="col-md-12">
                         <h1 class="text-center">
                             Welcome to the Mars Dashboard
-                            <p><br><a style='align-items: center;' class="btn btn-primary btn-lg" href="/scrape" role="button">Get Data!</a></p>
+                            <p><br><a style='align-items: center;' class="btn btn-primary btn-lg" href="/scrape" role="button">Get Data!</a><br></p>
                         </h1>
                     </div>
                 </div>
@@ -29,17 +29,17 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-8">
 					<h3 class="text-center">
 						BREAKING NEWS
 					</h3>
-                    <h3>{{ mars.nasa_news_title }}</h3>
+                    <h3 class="text-center">{{ mars.nasa_news_title }}</h3>
 					<p>
 						{{ mars.nasa_news_tag }}
 					</p>
 				</div>
-				<div class="col-md-6">
-                    <table>{{mars.mars_facts_table | safe}}</table>
+				<div class="table-responsive">
+                    <table class="table center" style='margin-right: 50px ;' >{{mars.mars_facts_table | safe}}</table>
 				</div>
 			</div>
 		</div>
@@ -66,6 +66,8 @@
 			</h3><img alt="Hemisphere 4" src={{ mars.mars_hemisphere_pics[3]['img_url'] }} width=100%>
 		</div>
 	</div>
+    {% else %}
+    <h3 class="text-center">Houston, we have a problem... no data here! Click 'Get Data!' to try again.</h3>
     {% endif %}
 </body>
 

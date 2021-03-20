@@ -59,6 +59,9 @@ def scrape_info():
 
     mars_facts = tables[0]
 
+    mars_facts.rename(columns={0: 'Measure', 1: 'Value'}, inplace=True)
+    mars_facts.set_index('Measure', inplace=True)
+
     mars_facts_html = mars_facts.to_html()
 
     #######MARS HEMISPHERES#######
