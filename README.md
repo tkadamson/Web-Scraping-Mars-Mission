@@ -1,6 +1,6 @@
 # hw-10-mars-mission-web-scraping
 
-## Project Instructions
+## Project Instructions | Grade: A
 
 ### Step 1 - Scraping
 
