@@ -1,8 +1,11 @@
-# hw-10-mars-mission-web-scraping
+# Web-Scraping-Mars-Mission
 
-#### GRADE: A
+### Summary | GRADE: A
+For this project, I was tassked with scraping various images and statistics related to NASA's Mars Missions using Python's BeautifulSoup and Splinter modules. Then I built a Flask App API with the scraped data, and used an HTML template to display the collected data. 
 
-## Web Scraping
+### Project Writeup
+
+#### Web Scraping
 For the initial Jupyter Notebook web scrape, I divided it into four sections, one for each new website to scrape. 
 
 The first section was the NASA News site. After initializing the splinter browset and scraping the page into a BeautifulSoup object, I used the inspector tool to find which html tag and class contained the relevent infomation. The title was contained within the class 'content_title' and the tag was contained within the class'article_teaser_body'. Using find_all() I placed the text into variables.
@@ -15,7 +18,7 @@ Lastly was getting the four hemisphere images astrogeology.usgs.gov. After initi
 
 Once the initial scrape was completed, I used the code within a Python script, under a function scrape_info. Then I took each of the scrape elements andd placed them into a single dictionary to be returned. 
 
-## Flask App
+#### Flask App
 After Flask initialization, I created two routes: one as a landing and one to call the python scrape script. The second route used the scrape_info function to grab the data, and then store it in a Mongo Database. It then redirects you back to the home page. 
 
 The home page takes the Mongo Dictionary, and passes it into a render template. 
